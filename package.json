@@ -1,0 +1,23 @@
+{
+  "name": "tich-duc",
+  "version": "1.0.0",
+  "description": "Tích Đức — mini game chùa Việt online: dâng hương, ngồi thiền, gõ mõ tích công đức",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node tests/smoke.test.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^4.21.1",
+    "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.8.4"
+  },
+  "private": true
+}

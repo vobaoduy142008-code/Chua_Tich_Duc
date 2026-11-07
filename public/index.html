@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1c100a">
+  <meta name="description" content="Tích Đức — mini game chùa Việt: dâng hương, ngồi thiền, gõ mõ và tích lũy công đức cùng mọi người.">
+  <title>Tích Đức · Chính điện an yên</title>
+  <link rel="icon" href="/assets/img/lotus.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;700&family=Be+Vietnam+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="/assets/img/chinh-dien.webp" as="image">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <svg width="0" height="0" class="sprite" aria-hidden="true">
+    <symbol id="i-lotus" viewBox="0 0 64 48">
+      <path d="M32 6c5 7 7 14 6 22-2 6-4 9-6 11-2-2-4-5-6-11-1-8 1-15 6-22z" fill="currentColor"/>
+      <path d="M12 14c8 2 14 8 17 17 1 4 2 7 3 9-6 0-13-3-17-9-3-5-4-11-3-17z" fill="currentColor" opacity=".85"/>
+      <path d="M52 14c1 6 0 12-3 17-4 6-11 9-17 9 1-2 2-5 3-9 3-9 9-15 17-17z" fill="currentColor" opacity=".85"/>
+      <path d="M2 28c9-2 18 1 25 9 2 2 3 3 5 5-11 2-22-2-30-14zm60 0c-8 12-19 16-30 14 2-2 3-3 5-5 7-8 16-11 25-9z" fill="currentColor" opacity=".65"/>
+    </symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1c.5.4 1.1.8 1.7 1l.4 2.7h4l.4-2.7c.6-.2 1.2-.6 1.7-1l2.5 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 9.5l5 5m0-5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-incense" viewBox="0 0 24 24"><path d="M9 21h6M10 21l1-12m3 12-1-12m-1.5 12V8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"/><path d="M11 5c1-1 0-2 1-3m1 4c1-1 0-2 1-3M9.5 6c1-1 0-2 1-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".7"/></symbol>
+    <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 16c0-5 4-9 9-9s9 4 9 9c-3 1.5-6 2-9 2s-6-.5-9-2z" fill="currentColor"/><path d="M7 14c3 1.2 7 1.2 10 0" stroke="#1c100a" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M16 3l3 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-meditate" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2.6" fill="currentColor"/><path d="M12 9c-2.5 0-4 1.6-4 4v2l-4 2.5c0 1.3 1 2 2 2h12c1 0 2-.7 2-2L16 15v-2c0-2.4-1.5-4-4-4z" fill="currentColor"/></symbol>
+    <symbol id="i-stand" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.5" fill="currentColor"/><path d="M12 8c-2 0-3.5 1.3-3.5 3.5V16h2v5h3v-5h2v-4.5C15.5 9.3 14 8 12 8z" fill="currentColor"/></symbol>
+  </svg>
+
+  <canvas id="game-canvas" aria-label="Chính điện"></canvas>
+
+  <!-- ========== Welcome ========== -->
+  <section id="screen-welcome" class="screen menu active" aria-labelledby="welcome-title">
+    <div class="card welcome-card">
+      <svg class="emblem" aria-hidden="true"><use href="#i-lotus"/></svg>
+      <h1 id="welcome-title">Tích Đức</h1>
+      <p class="tagline">Chính điện an yên</p>
+      <p class="lead">Bước vào chính điện, dâng một nén hương, ngồi thiền vài phút hay gõ mõ theo nhịp thở — và cùng mọi người tích lũy công đức.</p>
+      <p id="welcome-status" class="status-line" role="status">Đang tìm nhân vật của bạn…</p>
+      <div class="actions">
+        <button id="btn-enter" class="btn btn-primary" disabled>Vào chùa</button>
+        <button id="btn-new" class="btn btn-ghost" hidden>Tạo nhân vật mới</button>
+      </div>
+      <button id="btn-recover" class="link-btn" type="button">Đã có mã khôi phục?</button>
+      <p class="fine-print">Bạn chơi bằng <strong>tài khoản khách</strong>: nhân vật và công đức được lưu trên máy chủ, gắn với trình duyệt này. Muốn chơi trên thiết bị khác, hãy lưu <em>mã khôi phục</em> trong mục Hồ sơ.</p>
+    </div>
+  </section>
+
+  <!-- ========== Character creation / editing ========== -->
+  <section id="screen-create" class="screen menu" aria-labelledby="create-title">
+    <div class="card create-card">
+      <header class="create-head">
+        <h2 id="create-title">Tạo nhân vật</h2>
+        <p id="create-sub">Chọn dáng vẻ giản dị cho chuyến viếng chùa của bạn.</p>
+      </header>
+      <div class="create-grid">
+        <div class="preview-pane">
+          <canvas id="preview-canvas" aria-label="Xem trước nhân vật"></canvas>
+          <div class="preview-rotate" role="group" aria-label="Xoay nhân vật">
+            <button type="button" class="round-btn" data-rot="-1" aria-label="Xoay trái">‹</button>
+            <span>Xoay</span>
+            <button type="button" class="round-btn" data-rot="1" aria-label="Xoay phải">›</button>
+          </div>
+        </div>
+        <form id="create-form" class="create-form" novalidate>
+          <fieldset class="field">
+            <legend>Nhân vật</legend>
+            <div class="segmented" id="gender-group">
+              <label><input type="radio" name="gender" value="male" checked><span>Nam</span></label>
+              <label><input type="radio" name="gender" value="female"><span>Nữ</span></label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="input-name" class="field-label">Tên hiển thị <span id="name-count" class="counter">0/16</span></label>
+            <input id="input-name" name="display_name" type="text" autocomplete="nickname" maxlength="24" placeholder="Ví dụ: Tâm An" spellcheck="false">
+            <p id="name-error" class="field-error" role="alert"></p>
+          </div>
+          <fieldset class="field">
+            <legend>Màu da</legend>
+            <div class="swatches" id="skin-group"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Màu tóc</legend>
+            <div class="swatches" id="hair-group"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Kiểu tóc</legend>
+            <div class="chips" id="style-group"></div>
+          </fieldset>
+          <fieldset class="field">
+            <legend>Trang phục cư sĩ</legend>
+            <div class="robes" id="robe-group"></div>
+          </fieldset>
+          <p id="form-error" class="form-error" role="alert"></p>
+          <div class="form-actions">
+            <button type="button" id="btn-cancel-edit" class="btn btn-ghost" hidden>Hủy</button>
+            <button type="submit" id="btn-save" class="btn btn-primary">Vào chùa</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Loading ========== -->
+  <section id="screen-loading" class="screen menu" aria-live="polite">
+    <div class="loading">
+      <svg class="emblem spin" aria-hidden="true"><use href="#i-lotus"/></svg>
+      <p id="loading-text">Đang thắp đèn chính điện…</p>
+      <div class="progress"><div id="loading-bar"></div></div>
+    </div>
+  </section>
+
+  <!-- ========== Game HUD ========== -->
+  <section id="screen-game" class="screen game">
+    <div class="hud-tl">
+      <button id="btn-profile" class="hud-chip" type="button" aria-label="Mở hồ sơ">
+        <canvas id="avatar-canvas" width="72" height="72" aria-hidden="true"></canvas>
+        <span id="hud-name">Phật tử</span>
+      </button>
+      <button id="btn-settings" class="hud-icon" type="button" aria-label="Cài đặt"><svg><use href="#i-gear"/></svg></button>
+      <button id="btn-sound" class="hud-icon" type="button" aria-label="Tắt âm thanh"><svg><use href="#i-sound"/></svg></button>
+    </div>
+    <div class="hud-tr">
+      <div class="merit-pill" id="merit-pill" aria-live="polite">
+        <svg aria-hidden="true"><use href="#i-lotus"/></svg>
+        <div class="merit-text"><strong id="merit-value">0</strong><span>công đức</span></div>
+      </div>
+      <div id="sync-chip" class="mini-chip sync" hidden><span class="dot"></span>Đang đồng bộ…</div>
+      <div id="online-chip" class="mini-chip"><span class="dot online"></span><span id="online-count">1</span>&nbsp;người trong chính điện</div>
+    </div>
+    <div id="med-chip" class="med-chip" hidden aria-live="off">
+      <svg aria-hidden="true"><use href="#i-lotus"/></svg>
+      <span>Đang thiền</span><b id="med-time">00:00</b><span class="sep">·</span><b id="med-points">+0</b>
+    </div>
+    <div id="toasts" class="toasts" aria-live="polite"></div>
+    <div id="conn-banner" class="conn-banner" hidden role="status"></div>
+
+    <div id="action-bar" class="action-bar">
+      <button id="btn-secondary" class="act act-secondary" type="button" hidden>
+        <svg><use href="#i-stand"/></svg><span class="act-label">Đứng dậy</span><kbd>Esc</kbd>
+      </button>
+      <button id="btn-primary" class="act act-primary" type="button" hidden>
+        <svg><use id="act-icon" href="#i-incense"/></svg><span class="act-label" id="act-label">Dâng hương</span><kbd>E</kbd>
+        <span class="cooldown" id="act-cooldown"></span>
+      </button>
+    </div>
+    <div id="joystick" class="joystick" hidden aria-hidden="true"><div class="joy-knob"></div></div>
+
+    <div id="tutorial" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="tut-title">
+      <div class="card dialog">
+        <h3 id="tut-title">Chào mừng đến chính điện</h3>
+        <ul class="tut-list">
+          <li><span class="tut-key" id="tut-move">W A S D / ← ↑ → ↓</span><span>Đi lại trên sàn chính điện</span></li>
+          <li><span class="tut-key">E · Space</span><span>Dâng hương khi đứng gần lư hương <b>(+2)</b></span></li>
+          <li><span class="tut-key">E · Space</span><span>Gõ mõ khi đứng cạnh mõ, mỗi nhịp <b>+1</b></span></li>
+          <li><span class="tut-key">E · Space</span><span>Ngồi thiền ở chỗ sàn trống, mỗi giây <b>+1</b></span></li>
+          <li><span class="tut-key">Esc</span><span>Đứng dậy, kết thúc thiền hoặc rời mõ</span></li>
+        </ul>
+        <p class="fine-print">Xin giữ không gian trang nghiêm: nhân vật chỉ đi lại trên sàn, không lên bệ thờ.</p>
+        <div class="dialog-actions"><button id="btn-tutorial-ok" class="btn btn-primary" type="button">Đã hiểu</button></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Profile ========== -->
+  <div id="panel-profile" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="profile-title">
+    <div class="card dialog profile-card">
+      <button class="close-btn" data-close type="button" aria-label="Đóng"><svg><use href="#i-close"/></svg></button>
+      <div class="profile-head">
+        <canvas id="profile-canvas" width="180" height="200" aria-hidden="true"></canvas>
+        <div>
+          <h3 id="profile-title">Phật tử</h3>
+          <p class="profile-merit"><svg aria-hidden="true"><use href="#i-lotus"/></svg><b id="profile-merit">0</b> công đức</p>
+          <ul class="merit-breakdown" id="merit-breakdown"></ul>
+        </div>
+      </div>
+      <button id="btn-edit-look" class="btn btn-ghost wide" type="button">Chỉnh sửa ngoại hình</button>
+      <div class="recovery">
+        <h4>Mã khôi phục</h4>
+        <p class="fine-print">Đây là khóa bí mật của nhân vật. Lưu lại để chơi tiếp trên thiết bị khác hoặc khi xóa dữ liệu trình duyệt. <b>Không chia sẻ mã này</b>.</p>
+        <div class="code-row">
+          <code id="recovery-code" class="masked">••••-••••-••••-••••</code>
+          <button id="btn-show-code" class="btn btn-small" type="button">Hiện</button>
+          <button id="btn-copy-code" class="btn btn-small" type="button">Sao chép</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Settings ========== -->
+  <div id="panel-settings" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="card dialog">
+      <button class="close-btn" data-close type="button" aria-label="Đóng"><svg><use href="#i-close"/></svg></button>
+      <h3 id="settings-title">Cài đặt</h3>
+      <div class="setting">
+        <label class="switch"><input type="checkbox" id="set-music"><span></span>Nhạc nền thiền</label>
+        <input type="range" id="set-music-vol" min="0" max="100" aria-label="Âm lượng nhạc nền">
+      </div>
+      <div class="setting">
+        <label class="switch"><input type="checkbox" id="set-sfx"><span></span>Âm thanh hoạt động</label>
+        <input type="range" id="set-sfx-vol" min="0" max="100" aria-label="Âm lượng hiệu ứng">
+      </div>
+      <p class="fine-print">Âm thanh chỉ phát sau khi bạn chạm hoặc bấm vào trang.</p>
+      <div class="dialog-actions">
+        <button id="btn-show-tutorial" class="btn btn-ghost" type="button">Xem hướng dẫn</button>
+        <button class="btn btn-primary" data-close type="button">Xong</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== Recovery ========== -->
+  <div id="panel-recover" class="overlay" hidden role="dialog" aria-modal="true" aria-labelledby="recover-title">
+    <form class="card dialog" id="recover-form" novalidate>
+      <button class="close-btn" data-close type="button" aria-label="Đóng"><svg><use href="#i-close"/></svg></button>
+      <h3 id="recover-title">Khôi phục nhân vật</h3>
+      <p class="fine-print">Nhập mã khôi phục bạn đã lưu (32 ký tự, có thể có dấu gạch).</p>
+      <input id="recover-input" type="text" autocomplete="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX">
+      <p id="recover-error" class="field-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" data-close type="button">Hủy</button>
+        <button class="btn btn-primary" type="submit" id="btn-recover-go">Khôi phục</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ========== Error ========== -->
+  <div id="error-overlay" class="overlay" hidden role="alertdialog" aria-modal="true" aria-labelledby="error-title">
+    <div class="card dialog error-card">
+      <h3 id="error-title">Có chút trục trặc</h3>
+      <p id="error-message">Đã xảy ra lỗi.</p>
+      <div class="dialog-actions">
+        <button id="btn-error-alt" class="btn btn-ghost" type="button" hidden>Tạo nhân vật mới</button>
+        <button id="btn-error-retry" class="btn btn-primary" type="button">Thử lại</button>
+      </div>
+    </div>
+  </div>
+
+  <noscript><p class="noscript">Tích Đức cần JavaScript để hoạt động.</p></noscript>
+
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script src="/js/shared/world.js"></script>
+  <script src="/js/shared/profile-rules.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/renderer.js"></script>
+  <script src="/js/character.js"></script>
+  <script src="/js/temple.js"></script>
+  <script src="/js/input.js"></script>
+  <script src="/js/audio.js"></script>
+  <script src="/js/network.js"></script>
+  <script src="/js/ui.js"></script>
+  <script src="/js/game.js"></script>
+</body>
+</html>
